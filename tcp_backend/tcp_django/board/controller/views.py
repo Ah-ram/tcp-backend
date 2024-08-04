@@ -19,10 +19,10 @@ class BoardView(viewsets.ViewSet):
 
     def create(self, request):
         data = request.data
-        serializer = BoardSerializer(data)
+        serializer = BoardSerializer(data=data)
 
         if serializer.is_valid():
-            board= self.boardService.createBoard(serializer.validated_data)
+            board = self.boardService.createBoard(serializer.validated_data)
             return Response(BoardSerializer(board).data, status=status.HTTP_201_CREATED)
 
         return Response(status=status.HTTP_400_BAD_REQUEST)
